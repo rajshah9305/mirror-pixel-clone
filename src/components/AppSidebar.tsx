@@ -44,21 +44,24 @@ export function AppSidebar() {
     isActive ? "bg-primary text-primary-foreground font-medium" : "hover:bg-muted/50 text-muted-foreground hover:text-foreground"
 
   return (
-    <Sidebar className={`${collapsed ? "w-14" : "w-64"} border-r border-border bg-card`} collapsible="icon">
-      <SidebarContent className="p-4">
+    <Sidebar className={`${collapsed ? "w-14" : "w-64"} border-r border-border bg-gradient-card`} collapsible="icon">
+      <SidebarContent className="p-4 h-full">
         {/* Logo and Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center shadow-glow pulse-glow">
               <Brain className="w-5 h-5 text-primary-foreground" />
             </div>
             {!collapsed && (
               <div>
-                <h1 className="text-lg font-bold text-foreground">CerebralOps</h1>
+                <h1 className="text-lg font-bold text-foreground bg-gradient-cerebral bg-clip-text text-transparent">CerebralOps</h1>
                 <p className="text-xs text-muted-foreground">AI Agent Orchestration</p>
               </div>
             )}
           </div>
+          {!collapsed && (
+            <div className="w-full h-px bg-gradient-cerebral opacity-30 rounded-full" />
+          )}
         </div>
 
         {/* Navigation */}
@@ -71,10 +74,10 @@ export function AppSidebar() {
               {navigationItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <NavLink 
+                     <NavLink 
                       to={item.url} 
                       end 
-                      className={({ isActive }) => `flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${getNavCls({ isActive })}`}
+                      className={({ isActive }) => `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 hover-lift ${getNavCls({ isActive })}`}
                     >
                       <item.icon className="w-4 h-4 flex-shrink-0" />
                       {!collapsed && <span className="text-sm">{item.title}</span>}
@@ -111,13 +114,16 @@ export function AppSidebar() {
         {/* AI Orchestrator */}
         {!collapsed && (
           <div className="mt-auto pt-8">
-            <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-xs font-bold text-primary-foreground">
+            <div className="flex items-center gap-3 p-3 bg-gradient-card border border-border/50 rounded-lg shadow-soft hover-lift glass">
+              <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center text-xs font-bold text-primary-foreground shadow-glow">
                 AI
               </div>
               <div>
                 <p className="text-sm font-medium text-foreground">AI Orchestrator</p>
-                <p className="text-xs text-muted-foreground">Neural Operations Active</p>
+                <p className="text-xs text-muted-foreground flex items-center gap-1">
+                  <div className="w-1.5 h-1.5 bg-status-online rounded-full animate-pulse" />
+                  Neural Operations Active
+                </p>
               </div>
             </div>
           </div>

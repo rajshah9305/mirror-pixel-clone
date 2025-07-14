@@ -169,7 +169,7 @@ const Dashboard = () => {
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {statsCards.map((stat, index) => (
-          <Card key={index} className="bg-card border-border">
+          <Card key={index} className="bg-gradient-card border-border hover-lift shadow-soft">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -178,7 +178,7 @@ const Dashboard = () => {
                   </p>
                   <p className="text-3xl font-bold text-foreground mt-2">{stat.value}</p>
                 </div>
-                <div className={`w-12 h-12 rounded-lg ${stat.color} flex items-center justify-center`}>
+                <div className={`w-12 h-12 rounded-lg ${stat.color} flex items-center justify-center shadow-glow hover-scale`}>
                   <stat.icon className="w-6 h-6 text-white" />
                 </div>
               </div>
@@ -190,14 +190,14 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Agent Status Grid */}
         <div className="lg:col-span-2">
-          <Card className="bg-card border-border">
+          <Card className="bg-gradient-card border-border hover-lift shadow-soft">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg font-semibold text-foreground flex items-center gap-2">
-                  <Brain className="w-5 h-5 text-primary" />
+                  <Brain className="w-5 h-5 text-primary glow-primary" />
                   Agent Status Grid
                 </CardTitle>
-                <Badge variant="secondary" className="bg-primary/10 text-primary">
+                <Badge variant="secondary" className="bg-gradient-primary text-primary-foreground shadow-glow">
                   4 Active
                 </Badge>
               </div>
@@ -205,11 +205,11 @@ const Dashboard = () => {
             <CardContent className="p-6 pt-0">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {agents.map((agent, index) => (
-                  <Card key={index} className="bg-muted/50 border-border">
+                  <Card key={index} className="bg-gradient-card border-border/50 hover-lift shadow-soft glass">
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-3">
-                          <div className={`w-8 h-8 rounded-lg ${getFrameworkColor(agent.framework)} flex items-center justify-center`}>
+                          <div className={`w-8 h-8 rounded-lg ${getFrameworkColor(agent.framework)} flex items-center justify-center shadow-glow hover-scale`}>
                             <Brain className="w-4 h-4 text-white" />
                           </div>
                           <div>
@@ -220,8 +220,8 @@ const Dashboard = () => {
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <div className={`w-2 h-2 rounded-full ${getStatusColor(agent.status)}`} />
-                          <MoreHorizontal className="w-4 h-4 text-muted-foreground" />
+                          <div className={`w-2 h-2 rounded-full ${getStatusColor(agent.status)} ${agent.status === 'online' ? 'animate-pulse' : ''}`} />
+                          <MoreHorizontal className="w-4 h-4 text-muted-foreground hover:text-foreground hover-scale cursor-pointer" />
                         </div>
                       </div>
 
@@ -258,12 +258,12 @@ const Dashboard = () => {
 
                         <div className="flex gap-2">
                           {agent.status === "offline" ? (
-                            <Button size="sm" variant="outline" className="flex-1 gap-1">
+                            <Button size="sm" variant="outline" className="flex-1 gap-1 hover-lift border-success/50 hover:bg-success hover:text-success-foreground">
                               <Play className="w-3 h-3" />
                               Start
                             </Button>
                           ) : (
-                            <Button size="sm" variant="outline" className="flex-1 gap-1">
+                            <Button size="sm" variant="outline" className="flex-1 gap-1 hover-lift border-warning/50 hover:bg-warning hover:text-warning-foreground">
                               <Pause className="w-3 h-3" />
                               Pause
                             </Button>
@@ -281,14 +281,14 @@ const Dashboard = () => {
         {/* Right Sidebar */}
         <div className="space-y-6">
           {/* Task Queue */}
-          <Card className="bg-card border-border">
+          <Card className="bg-gradient-card border-border hover-lift shadow-soft">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg font-semibold text-foreground flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-primary" />
+                  <Clock className="w-5 h-5 text-primary glow-primary" />
                   Task Queue
                 </CardTitle>
-                <Badge variant="secondary" className="bg-primary/10 text-primary">
+                <Badge variant="secondary" className="bg-gradient-primary text-primary-foreground shadow-glow">
                   4 Active
                 </Badge>
               </div>
@@ -322,10 +322,10 @@ const Dashboard = () => {
           </Card>
 
           {/* Framework Control */}
-          <Card className="bg-card border-border">
+          <Card className="bg-gradient-card border-border hover-lift shadow-soft">
             <CardHeader className="pb-4">
               <CardTitle className="text-lg font-semibold text-foreground flex items-center gap-2">
-                <Settings className="w-5 h-5 text-primary" />
+                <Settings className="w-5 h-5 text-primary glow-primary" />
                 Framework Control
               </CardTitle>
             </CardHeader>
@@ -359,7 +359,7 @@ const Dashboard = () => {
                 </div>
               </div>
               
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="w-full hover-lift bg-gradient-card border-border/50">
                 Configure Frameworks
               </Button>
             </CardContent>
@@ -368,22 +368,22 @@ const Dashboard = () => {
       </div>
 
       {/* Live Activity Stream */}
-      <Card className="bg-card border-border">
+      <Card className="bg-gradient-card border-border hover-lift shadow-soft">
         <CardHeader className="pb-4">
           <CardTitle className="text-lg font-semibold text-foreground flex items-center gap-2">
-            <Activity className="w-5 h-5 text-primary" />
+            <Activity className="w-5 h-5 text-primary glow-primary" />
             Live Activity Stream
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6 pt-0">
           <div className="space-y-3">
             {activities.map((activity, index) => (
-              <div key={index} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+              <div key={index} className="flex items-center justify-between p-3 bg-gradient-card border border-border/50 rounded-lg hover-lift glass">
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse glow-primary" />
                   <span className="text-sm text-foreground">{activity.name}</span>
                 </div>
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="outline" className="text-xs border-border/50">
                   {activity.framework}
                 </Badge>
               </div>

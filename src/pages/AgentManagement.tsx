@@ -82,7 +82,7 @@ const AgentManagement = () => {
           <h1 className="text-3xl font-bold text-foreground">Agent Management</h1>
           <p className="text-muted-foreground">Deploy, monitor, and control AI agents across frameworks</p>
         </div>
-        <Button className="gap-2">
+        <Button className="gap-2 bg-gradient-primary shadow-glow hover-lift">
           <Plus className="w-4 h-4" />
           Deploy New Agent
         </Button>
@@ -97,11 +97,11 @@ const AgentManagement = () => {
             className="pl-10 bg-card border-border"
           />
         </div>
-        <Button variant="outline" className="gap-2">
+        <Button variant="outline" className="gap-2 hover-lift bg-gradient-card border-border/50">
           <Filter className="w-4 h-4" />
           All Frameworks
         </Button>
-        <Button variant="outline" className="gap-2">
+        <Button variant="outline" className="gap-2 hover-lift bg-gradient-card border-border/50">
           <Filter className="w-4 h-4" />
           All Status
         </Button>
@@ -110,11 +110,11 @@ const AgentManagement = () => {
       {/* Agents Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {agents.map((agent, index) => (
-          <Card key={index} className="bg-card border-border">
+          <Card key={index} className="bg-gradient-card border-border hover-lift shadow-soft">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-lg ${getFrameworkColor(agent.framework)} flex items-center justify-center`}>
+                  <div className={`w-10 h-10 rounded-lg ${getFrameworkColor(agent.framework)} flex items-center justify-center shadow-glow hover-scale`}>
                     <Brain className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -124,7 +124,7 @@ const AgentManagement = () => {
                     </Badge>
                   </div>
                 </div>
-                <div className={`w-3 h-3 rounded-full ${getStatusColor(agent.status)}`} />
+                <div className={`w-3 h-3 rounded-full ${getStatusColor(agent.status)} ${agent.status === 'running' ? 'animate-pulse' : ''}`} />
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -137,14 +137,14 @@ const AgentManagement = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-muted/50 rounded-lg p-3">
+                <div className="bg-gradient-card border border-border/50 rounded-lg p-3 glass">
                   <div className="flex items-center gap-2 text-muted-foreground mb-1">
                     <Clock className="w-3 h-3" />
                     <span className="text-xs">Execution Time</span>
                   </div>
                   <span className="text-sm font-medium text-foreground">{agent.executionTime}</span>
                 </div>
-                <div className="bg-muted/50 rounded-lg p-3">
+                <div className="bg-gradient-card border border-border/50 rounded-lg p-3 glass">
                   <div className="flex items-center gap-2 text-muted-foreground mb-1">
                     <Activity className="w-3 h-3" />
                     <span className="text-xs">Memory Usage</span>
@@ -160,24 +160,24 @@ const AgentManagement = () => {
 
               <div className="flex gap-2">
                 {agent.status === "stopped" && (
-                  <Button size="sm" variant="outline" className="flex-1 gap-1">
+                  <Button size="sm" variant="outline" className="flex-1 gap-1 hover-lift border-success/50 hover:bg-success hover:text-success-foreground">
                     <Play className="w-3 h-3" />
                     Start
                   </Button>
                 )}
                 {agent.status === "running" && (
-                  <Button size="sm" variant="outline" className="flex-1 gap-1">
+                  <Button size="sm" variant="outline" className="flex-1 gap-1 hover-lift border-warning/50 hover:bg-warning hover:text-warning-foreground">
                     <Pause className="w-3 h-3" />
                     Pause
                   </Button>
                 )}
                 {agent.status === "paused" && (
-                  <Button size="sm" variant="outline" className="flex-1 gap-1">
+                  <Button size="sm" variant="outline" className="flex-1 gap-1 hover-lift border-success/50 hover:bg-success hover:text-success-foreground">
                     <Play className="w-3 h-3" />
                     Resume
                   </Button>
                 )}
-                <Button size="sm" variant="outline" className="gap-1 text-destructive hover:text-destructive">
+                <Button size="sm" variant="outline" className="gap-1 hover-lift border-destructive/50 text-destructive hover:bg-destructive hover:text-destructive-foreground">
                   <Square className="w-3 h-3" />
                   Stop
                 </Button>
