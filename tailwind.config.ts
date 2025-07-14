@@ -52,6 +52,26 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				success: {
+					DEFAULT: 'hsl(var(--success))',
+					foreground: 'hsl(var(--success-foreground))'
+				},
+				warning: {
+					DEFAULT: 'hsl(var(--warning))',
+					foreground: 'hsl(var(--warning-foreground))'
+				},
+				status: {
+					online: 'hsl(var(--status-online))',
+					warning: 'hsl(var(--status-warning))',
+					offline: 'hsl(var(--status-offline))'
+				},
+				framework: {
+					crewal: 'hsl(var(--framework-crewal))',
+					cerebras: 'hsl(var(--framework-cerebras))',
+					autogen: 'hsl(var(--framework-autogen))',
+					langgraph: 'hsl(var(--framework-langgraph))',
+					anthropic: 'hsl(var(--framework-anthropic))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
